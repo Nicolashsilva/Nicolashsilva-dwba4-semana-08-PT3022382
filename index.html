@@ -32,6 +32,81 @@
             text-decoration: none;
         }
     </style>
+    <script type="text/javascript">
+        // Código para Questão 1
+        function showQuestao(questaoId) {
+            document.getElementById('mainMenu').classList.add('hidden');
+
+            const questoes = document.getElementsByClassName('questao');
+            for (let i = 0; i < questoes.length; i++) {
+                questoes[i].classList.add('hidden');
+            }
+
+            document.getElementById(questaoId).classList.remove('hidden');
+
+            if (questaoId === 'questao1') {
+                alert("Alerta: Questão 01");
+            } else if (questaoId === 'questao2') {
+                alert("Alerta: Questão 02");
+            } else if (questaoId === 'questao3') {
+                const alunos = [
+                    { nome: "João da Silva", nota1: 7, nota2: 8.5 },
+                    { nome: "Maria Oliveira", nota1: 8, nota2: 9 },
+                    { nome: "Pedro Santos", nota1: 6, nota2: 7.5 }
+                ];
+
+                alunos.forEach(aluno => {
+                    let nota1Peso = aluno.nota1 * 0.6;
+                    let nota2Peso = aluno.nota2 * 0.4;
+                    let notaTotal = nota1Peso + nota2Peso;
+
+                    alert("Nome do aluno: " + aluno.nome + "\nNota 1: " + aluno.nota1 + "\nNota 2: " + aluno.nota2);
+                    alert("Nota total: " + notaTotal);
+                });
+            } else if (questaoId === 'questao4') {
+                class Aluno {
+                    constructor(primeiroNome, segundoNome, primeiraNota, segundaNota) {
+                        this.primeiroNome = primeiroNome;
+                        this.segundoNome = segundoNome;
+                        this.primeiraNota = primeiraNota;
+                        this.segundaNota = segundaNota;
+                    }
+
+                    get nomeCompleto() {
+                        return `${this.primeiroNome} ${this.segundoNome}`;
+                    }
+
+                    get media() {
+                        return (this.primeiraNota * 0.6) + (this.segundaNota * 0.4);
+                    }
+
+                    get situacao() {
+                        return this.media > 6 ? "Aprovado" : "Reprovado";
+                    }
+                }
+
+                const alunos = [
+                    new Aluno("João", "Silva", 7, 8),
+                    new Aluno("Maria", "Oliveira", 9, 7),
+                    new Aluno("Pedro", "Santos", 5, 6),
+                    new Aluno("Ana", "Costa", 8, 9),
+                    new Aluno("Lucas", "Fernandes", 6, 7)
+                ];
+
+                alunos.forEach(aluno => {
+                    alert(`Nome Completo: ${aluno.nomeCompleto}\nMédia: ${aluno.media.toFixed(2)}\nSituação: ${aluno.situacao}`);
+                });
+            }
+        }
+
+        function returnToMenu() {
+            const questoes = document.getElementsByClassName('questao');
+            for (let i = 0; i < questoes.length; i++) {
+                questoes[i].classList.add('hidden');
+            }
+            document.getElementById('mainMenu').classList.remove('hidden');
+        }
+    </script>
 </head>
 <body>
     <div class="container" id="mainMenu">
@@ -41,7 +116,6 @@
                 <li><a href="#" onclick="showQuestao('questao2')">Questão 02</a></li>
                 <li><a href="#" onclick="showQuestao('questao3')">Questão 03</a></li>
                 <li><a href="#" onclick="showQuestao('questao4')">Questão 04</a></li>
-                <li><a href="#" onclick="showQuestao('questao34')">Questão 34</a></li>
             </ul>
         </nav>
     </div>
@@ -62,43 +136,5 @@
         <h1>Questão 04</h1>
         <p><a href="#" onclick="returnToMenu()">Voltar</a></p>
     </div>
-    <div class="container questao hidden" id="questao34">
-        <h1>Questão 34</h1>
-        <p><img src="URL_DA_IMAGEM.jpg" alt="Imagem da Questão 34"></p>
-        <p><a href="#" onclick="returnToMenu()">Voltar</a></p>
-    </div>
-
-    <script>
-        // Função para mostrar questões
-        function showQuestao(questaoId) {
-            document.getElementById('mainMenu').classList.add('hidden');
-
-            const questoes = document.getElementsByClassName('questao');
-            for (let i = 0; i < questoes.length; i++) {
-                questoes[i].classList.add('hidden');
-            }
-
-            document.getElementById(questaoId).classList.remove('hidden');
-            alert('Alerta: ' + questaoId.charAt(0).toUpperCase() + questaoId.slice(1));
-
-            if (questaoId === 'questao4') {
-                let nome = "Fabio Teixeira";
-                let nota1 = 7;
-                let nota2 = 8.5;
-                let media = (nota1 + nota2) / 2;
-
-                alert("Nome do aluno: " + nome + "\nNota 1: " + nota1 + "\nNota 2: " + nota2 + "\nNota final: " + media);
-            }
-        }
-
-        // Função para voltar ao menu principal
-        function returnToMenu() {
-            const questoes = document.getElementsByClassName('questao');
-            for (let i = 0; i < questoes.length; i++) {
-                questoes[i].classList.add('hidden');
-            }
-            document.getElementById('mainMenu').classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
